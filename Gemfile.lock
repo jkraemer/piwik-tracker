@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    piwik-tracker (0.1.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    json (1.5.1)
+    patron (0.4.11)
+    rake (0.8.7)
+    test-unit (2.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  json
+  patron
+  piwik-tracker!
+  rake
+  test-unit
