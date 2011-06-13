@@ -64,15 +64,15 @@ module PiwikTracker
 
 
     public
-    
+
     class Request
-      
+
       # Piwik API version
       VERSION = 1
-      
+
       # length of Piwik visitor ids
       VISITOR_ID_LENGTH = 16
-      
+
       def initialize(piwik, auth_token = nil)
         @piwik = piwik
         @custom_variables = []
