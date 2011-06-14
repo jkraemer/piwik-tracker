@@ -18,6 +18,7 @@ module PiwikTracker
     USER_AGENT = "piwik-tracker/#{PiwikTracker::VERSION}"
     
     attr_accessor :debug
+    attr_writer :logger
     
     # base_uri - the location of your Piwik installation, i.e. 'http://yoursite.com/piwik'.
     # site_id  - Id of the site to be tracked
@@ -32,14 +33,19 @@ module PiwikTracker
                                  'rec'    => 1,
                                  'rand'   => rand(MAX_INT) )
     end
-    
+
+
     protected
-    
+
+    def logger
+      @logger ||= (require 'logger'; Logger.new($stdout))
+    end
+
     def send_request(params)
       headers = { 'Accept-Language' => params.delete(:browser_language) }
       headers['User-Agent'] = params.delete(:user_agent) if params.key?(:user_agent)
       url = "piwik.php?#{hash_to_querystring(params)}"
-      puts "#{url} / #{headers.inspect}" if @debug
+      logger.debug "Piwik request:\n#{url}\n#{headers.inspect}"
       http.get url, headers
     end
     

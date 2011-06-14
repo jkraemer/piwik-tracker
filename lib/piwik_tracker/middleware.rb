@@ -13,10 +13,9 @@ module PiwikTracker
         :site_id => site_id,
         :visitor_id => visitor_id
       }
-      Rails.logger.debug "piwik env: #{env['piwik'].inspect}"
       @app.call(env)
     end
-    
+
     private
 
     def parse_cookie(env)
