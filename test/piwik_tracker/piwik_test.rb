@@ -14,7 +14,7 @@ module PiwikTracker
       @piwik.debug = true
       @request = @piwik.request(ENV['auth'])
     end
-    
+
     test "should track pageview" do
       assert resp = @request.url('http://test.com/track_pageview').track_pageview( 'somwhere' )
       pp resp

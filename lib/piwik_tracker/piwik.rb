@@ -19,14 +19,14 @@ module PiwikTracker
     
     attr_accessor :debug
     attr_writer :logger
-    
+
     # base_uri - the location of your Piwik installation, i.e. 'http://yoursite.com/piwik'.
     # site_id  - Id of the site to be tracked
     def initialize(base_uri, site_id)
       @base_uri = base_uri
       @site_id = site_id
     end
-    
+
     # sends a tracking request
     def track(params)
       send_request params.merge( 'idsite' => @site_id,
@@ -48,7 +48,7 @@ module PiwikTracker
       logger.debug "Piwik request:\n#{url}\n#{headers.inspect}"
       http.get url, headers
     end
-    
+
     def http
       @http ||= connect
     end
@@ -59,7 +59,7 @@ module PiwikTracker
         query_string << "#{URI.encode(key.to_s)}=#{URI.encode(hash[key].to_s)}"
       end
     end
-    
+
     def connect
       Patron::Session.new.tap do |session|
         session.timeout = HTTP_TIMEOUT

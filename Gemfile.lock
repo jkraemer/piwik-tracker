@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     piwik-tracker (0.1.0)
+      patron
 
 GEM
   remote: http://rubygems.org/
